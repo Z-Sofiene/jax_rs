@@ -9,12 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Path("/person")
-@Produces(MediaType.APPLICATION_XML)
+@CrossOrigin("*")
+@Produces({MediaType.APPLICATION_XML})
 public class PersonneResource {
     @Autowired
     private IPersonneService personneService;
 
-    @CrossOrigin(origins = "http://localhost:20000")
+    //@CrossOrigin(origins = "http://localhost:20000")
     @POST
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     @Path("/add")
@@ -46,7 +47,7 @@ public class PersonneResource {
 
     @GET
     @Path("/getAll")
-    @Produces(MediaType.APPLICATION_XML)
+    @Produces({MediaType.APPLICATION_XML,MediaType.APPLICATION_JSON})
     public Personne[] getAllPersonnes() {
         return personneService.getAllPersonnes();
     }
